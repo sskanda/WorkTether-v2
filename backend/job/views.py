@@ -3,21 +3,22 @@ from rest_framework.decorators import api_view
 from rest_framework.response import *
 from .serializers import JobSerializer
 from .models import Job
-
+from .filters import JobsFilter
 from django.shortcuts import get_object_or_404
 # Create your views here.
 
 @api_view(['GET'])
 def getAllJobs(request):
-    jobs = Job.objects.all()
 
-    serializer = JobSerializer(jobs, many=True)
+    filterset = JobsFilter(request.GET, queryset=Job.objects.all().order_by('id'))
+
+    serializer = JobSerializer(filterset.qs, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def getJob(request, pk):
-    job = get_object_or_404(Job, id=pk)
-
+    job =  get_object_or_404(Job, id=pk)
+    
     serializer = JobSerializer(job, many=False)
 
     return Response(serializer.data)
