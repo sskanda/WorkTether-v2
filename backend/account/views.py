@@ -40,3 +40,12 @@ def register(request):
 
     else:
         return Response(user.errors)
+    
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def currentUser(request):
+
+    user = UserSerializer(request.user)
+
+    return Response(user.data)
