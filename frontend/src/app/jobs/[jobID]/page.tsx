@@ -3,11 +3,7 @@ import styles from "./page.module.css";
 import Layout from "../../../../components/layout/Layout";
 import JobDetails from "../../../../components/job/JobDetails";
 
-export default async function JobetailsPage({
-  params,
-}: {
-  param: { jobID: string };
-}) {
+export default async function JobetailsPage({ params }: any) {
   const jobData = await getData(params.jobID);
   return (
     <>
