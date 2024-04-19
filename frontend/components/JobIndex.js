@@ -3,7 +3,10 @@ import Link from "next/link";
 
 import JobItem from "./job/JobItem";
 
-const JobIndex = () => {
+export default async function JobIndex() {
+  const data = await getData();
+  const { jobs, count, resPerPage } = data;
+  console.log(data);
   return (
     <div className="container container-fluid">
       <div className="row">
@@ -16,12 +19,25 @@ const JobIndex = () => {
               <Link href="/search">Go to Search</Link>
             </div>
           </div>
-          <JobItem />
-          <JobItem />
+          {jobs && jobs.map((job) => <JobItem key={job.id} job={job} />)}
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default JobIndex;
+async function getData() {
+  const res = await fetch(`${process.env.API_URL}/api/jobs`, {
+    next: { revalidate: 1 },
+    cache: "no-store",
+  });
+  // The return value is *not* serialized
+  // You can return Date, Map, Set, etc.
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}

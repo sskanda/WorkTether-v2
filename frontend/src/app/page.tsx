@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import Layout from "../../components/layout/Layout";
 import JobIndex from "../../components/JobIndex";
 
-export default function Home() {
+export default async function Home() {
   return (
     <Layout>
       <JobIndex></JobIndex>

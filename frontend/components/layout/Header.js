@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className="navWrapper">
       <div className="navContainer">
-        <Link style={{ "text-decoration": "none" }} href="/">
+        <Link style={{ textDecoration: "none" }} href="/">
           <div className="logoWrapper">
             <div className="logoImgWrapper">
               <Image width="50" height="60" src="/images/logo.png" alt="" />
