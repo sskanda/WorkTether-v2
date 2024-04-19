@@ -11,7 +11,7 @@ const Header = () => {
             <div className="logoImgWrapper">
               <Image width="50" height="60" src="/images/logo.png" alt="" />
             </div>
-            <spanc className="logoText">WorkTether</spanc>
+            <span className="logoText">WorkTether</span>
           </div>
         </Link>
         <div className="btnsWrapper">

@@ -4,7 +4,7 @@ import Link from "next/link";
 const JobItem = ({ job }) => {
   return (
     <div className="job-listing">
-      <Link style={{ textDecoration: "none" }} href="/jobdetail">
+      <Link style={{ textDecoration: "none" }} href={`/jobs/${job.id}`}>
         <div className="job-listing-details">
           <div className="job-listing-description">
             <h4 className="job-listing-company">{job.company}</h4>
@@ -27,7 +27,7 @@ const JobItem = ({ job }) => {
               <i aria-hidden className="fas fa-briefcase"></i> {job.jobType}
             </li>
             <li>
-              <i aria-hidden className="fas fa-money-check-alt"></i>$
+              <i aria-hidden className="fas fa-money-check-alt"></i>&#8377;
               {job.salary}
             </li>
             <li>

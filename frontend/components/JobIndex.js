@@ -6,7 +6,7 @@ import JobItem from "./job/JobItem";
 export default async function JobIndex() {
   const data = await getData();
   const { jobs, count, resPerPage } = data;
-  console.log(data);
+
   return (
     <div className="container container-fluid">
       <div className="row">
@@ -28,7 +28,6 @@ export default async function JobIndex() {
 
 async function getData() {
   const res = await fetch(`${process.env.API_URL}/api/jobs`, {
-    next: { revalidate: 1 },
     cache: "no-store",
   });
   // The return value is *not* serialized
