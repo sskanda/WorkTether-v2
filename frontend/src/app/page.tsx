@@ -7,11 +7,9 @@ import { NextRequest } from "next/server";
 export default async function Home() {
   const data = await getData();
 
-  const { jobs, count, resPerPage } = data;
-
   return (
     <Layout>
-      <JobIndex jobs={jobs}></JobIndex>
+      <JobIndex data={data}></JobIndex>
     </Layout>
   );
 }

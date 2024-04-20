@@ -15,7 +15,7 @@ const Header = () => {
           </div>
         </Link>
         <div className="btnsWrapper">
-          <Link href="/employeer/jobs/new">
+          <Link href="/jobs/new">
             <button className="postAJobButton">
               <span>Post A Job</span>
             </button>

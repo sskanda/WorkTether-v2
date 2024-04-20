@@ -2,9 +2,14 @@
 import React from "react";
 import Link from "next/link";
 import JobItem from "./job/JobItem";
-import { useState, useEffect } from "react";
+import Pagination from "react-js-pagination";
+import { useRouter } from "next/navigation";
 
-export default function JobIndex({ jobs }) {
+export default function JobIndex({ data }) {
+  const { jobs, count, resPerPage } = data;
+  const router = useRouter();
+  let page = 1;
+  const handlePageClick = () => {};
   return (
     <div className="container container-fluid">
       <div className="row">
@@ -18,6 +23,22 @@ export default function JobIndex({ jobs }) {
             </div>
           </div>
           {jobs && jobs.map((job) => <JobItem key={job.id} job={job} />)}
+          {resPerPage < count && (
+            <div className="d-flex justify-content-center mt-5">
+              <Pagination
+                activePage={page}
+                itemsCountPerPage={resPerPage}
+                totalItemsCount={count}
+                onChange={handlePageClick}
+                nextPageText={"Next"}
+                prevPageText={"Prev"}
+                firstPageText={"First"}
+                lastPageText={"Last"}
+                itemClass="page-item"
+                linkClass="page-link"
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
